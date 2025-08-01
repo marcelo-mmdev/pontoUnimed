@@ -5,23 +5,23 @@ import { useState } from "react";
 
 export default function Home() {
 
-  const [dia, setDia] = useState('')
+  const [data, setData] = useState('')
   const [horainicio, setHoraInicio] = useState('')
   const [horafinal, setHoraFinal] = useState('')
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault()
-    //console.log(" Teste de console", dia, horainicio, horafinal)
-    const data = {
-      Dia: dia,
+    //console.log(" Teste de console", data, horainicio, horafinal)
+    const dados = {
+      Data: data,
       HoraInicio: horainicio,
       HoraFinal: horafinal
     }
 
     axios.post('https://api.sheetbest.com/sheets/d62ffb52-b143-4612-a599-ec42bada050e',
-      data
+      dados
     ).then((response) => {
-      setDia('')
+      setData('')
       setHoraInicio('')
       setHoraFinal('')
       console.log("Dados enviado", response)
@@ -38,7 +38,7 @@ export default function Home() {
         <form autoComplete="off" className="form-group" onSubmit={handleSubmit}>
           <label>Data</label>
           <input type="date" placeholder="Enter Nome" className="form-control" required 
-            onChange={(e) => setDia(e.target.value)} value={dia}/>
+            onChange={(e) => setData(e.target.value)} value={data}/>
           <br></br>
 
           <label>Primeira Hora</label>
